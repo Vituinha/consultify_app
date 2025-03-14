@@ -14,12 +14,12 @@ import Modal from '../../components/Modal'
 
 import './dashboard.css'
 
-const listRef = collection(db, "chamados")
+const listRef = collection(db, "projetos")
 
 export default function Dashboard(){
   const { logout } = useContext(AuthContext);
 
-  const [chamados, setChamados] = useState([])
+  const [projetos, setProjetos] = useState([])
   const [loading, setLoading] = useState(true);
 
   const [isEmpty, setIsEmpty] = useState(false)
@@ -31,11 +31,11 @@ export default function Dashboard(){
 
 
   useEffect(() => {
-    async function loadChamados(){
+    async function loadProjetos(){
       const q = query(listRef, orderBy('created', 'desc'), limit(5));
 
       const querySnapshot = await getDocs(q)
-      setChamados([]);
+      setProjetos([]);
 
       await updateState(querySnapshot)
 
@@ -43,7 +43,7 @@ export default function Dashboard(){
 
     }
 
-    loadChamados();
+    loadProjetos();
 
 
     return () => { }
@@ -72,7 +72,7 @@ export default function Dashboard(){
 
       const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] // Pegando o ultimo item
 
-      setChamados(chamados => [...chamados, ...lista])
+      setProjetos(projetos => [...projetos, ...lista])
       setLastDocs(lastDoc);
 
     }else{
@@ -111,7 +111,7 @@ export default function Dashboard(){
           </Title>
 
           <div className="container dashboard">
-            <span>Buscando chamados...</span>
+            <span>Buscando projetos...</span>
           </div>
         </div>
       </div>
@@ -128,9 +128,9 @@ export default function Dashboard(){
         </Title>
 
         <>
-          {chamados.length === 0 ? (
+          {projetos.length === 0 ? (
             <div className="container dashboard">
-              <span>Nenhum chamado encontrado...</span>
+              <span>Nenhum projeto encontrado...</span>
               <Link to="/new" className="new">
                 <FiPlus color="#FFF" size={25} />
                 Novo Projeto
@@ -155,7 +155,7 @@ export default function Dashboard(){
                   </tr>
                 </thead>
                 <tbody>
-                  {chamados.map((item, index) => {
+                  {projetos.map((item, index) => {
                     return(
                       <tr key={index}>
                         <td data-label="Cliente">{item.cliente}</td>
@@ -182,7 +182,7 @@ export default function Dashboard(){
               </table>   
 
 
-              {loadingMore && <h3>Buscando mais chamados...</h3>}    
+              {loadingMore && <h3>Buscando mais projetos...</h3>}    
               {!loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}>Buscar mais</button>  }  
             </>
           )}

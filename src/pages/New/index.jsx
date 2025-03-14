@@ -72,7 +72,7 @@ export default function New(){
 
 
   async function loadId(lista){
-    const docRef = doc(db, "chamados", id);
+    const docRef = doc(db, "projetos", id);
     await getDoc(docRef)
     .then((snapshot) => {
       setAssunto(snapshot.data().assunto)
@@ -114,8 +114,8 @@ export default function New(){
     e.preventDefault();
 
     if(idCustomer){
-      //Atualizando chamado
-      const docRef = doc(db, "chamados", id)
+      //Atualizando projetos
+      const docRef = doc(db, "projetos", id)
       await updateDoc(docRef, {
         cliente: customers[customerSelected].nomeFantasia,
         clienteId: customers[customerSelected].id,
@@ -126,13 +126,13 @@ export default function New(){
         userId: user.uid,
       })
       .then(() => {
-        toast.info("Chamado atualizado com sucesso!")
+        toast.info("Projeto atualizado com sucesso!")
         setCustomerSelected(0);
         setComplemento('');
         navigate('/dashboard')
       })
       .catch((error) => {
-        toast.error("Ops erro ao atualizar esse chamado!")
+        toast.error("Ops erro ao atualizar esse projeto!")
         console.log(error);
       })
 
@@ -140,8 +140,8 @@ export default function New(){
     }
 
 
-    //Registrar um chamado
-    await addDoc(collection(db, "chamados"), {
+    //Registrar um projeto
+    await addDoc(collection(db, "projetos"), {
       created: new Date(),
       cliente: customers[customerSelected].nomeFantasia,
       clienteId: customers[customerSelected].id,
@@ -152,7 +152,7 @@ export default function New(){
       userId: user.uid,
     })
     .then(() => {
-      toast.success("Chamado registrado!")
+      toast.success("Projeto registrado!")
       setComplemento('')
       setCustomerSelected(0)
     })
@@ -167,7 +167,7 @@ export default function New(){
       <Header/>
 
       <div className="content">
-        <Title name={id ? "Editando Chamado" : "Novo Chamado"}>
+        <Title name={id ? "Editando Projeto" : "Novo Projeto"}>
           <FiPlusCircle size={25}/>
         </Title>
 

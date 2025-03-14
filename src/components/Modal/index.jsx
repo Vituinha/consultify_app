@@ -12,7 +12,7 @@ export default function Modal({ conteudo, close }){
         </button>
 
         <main>
-          <h2>Detalhes do chamado</h2>
+          <h2>Detalhes do projeto</h2>
 
           <div className="row">
             <span>
