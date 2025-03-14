@@ -18,7 +18,7 @@ function AuthProvider({ children }){
 
   useEffect(() => {
     async function loadUser(){
-      const storageUser = localStorage.getItem('@ticketsPRO')
+      const storageUser = localStorage.getItem('@consultify')
 
       if(storageUser){
         setUser(JSON.parse(storageUser))
@@ -106,12 +106,12 @@ function AuthProvider({ children }){
 
 
   function storageUser(data){
-    localStorage.setItem('@ticketsPRO', JSON.stringify(data))
+    localStorage.setItem('@consultify', JSON.stringify(data))
   }
 
   async function logout(){
     await signOut(auth);
-    localStorage.removeItem('@ticketsPRO');
+    localStorage.removeItem('@consultify');
     setUser(null);
   }
 

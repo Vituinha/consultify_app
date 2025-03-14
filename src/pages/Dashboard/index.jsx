@@ -106,7 +106,7 @@ export default function Dashboard(){
         <Header/>
 
         <div className="content">
-          <Title name="Tickets">
+          <Title name="Consultify">
             <FiMessageSquare size={25} />
           </Title>
 
@@ -123,7 +123,7 @@ export default function Dashboard(){
       <Header/>
 
       <div className="content">
-        <Title name="Tickets">
+        <Title name="Consultify">
           <FiMessageSquare size={25} />
         </Title>
 
