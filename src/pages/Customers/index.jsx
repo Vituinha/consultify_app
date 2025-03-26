@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from '../../components/Header'
 import Title from '../../components/Title'
+import { validateCNPJ, formatCNPJ } from '../../helpers/CNPJMask';
 
 import { FiUser } from 'react-icons/fi'
 
@@ -12,20 +13,26 @@ import { toast } from 'react-toastify'
 export default function Customers(){
   const [nome, setNome] = useState('')
   const [cnpj, setCnpj] = useState('')
+  const [email, setEmail] = useState('')
+  const [contato, setContato] = useState('')
   const [endereco, setEndereco] = useState('')
 
   async function handleRegister(e){
     e.preventDefault();
 
-    if(nome !== '' && cnpj !== '' && endereco !== ''){
+    if(nome !== '' && cnpj !== '' && endereco !== '' && email !== '' && contato !== ''){
         await addDoc(collection(db, "customers"), {
           nomeFantasia: nome,
           cnpj: cnpj,
+          email: email,
+          contato: contato,
           endereco: endereco
         })
         .then(() => {
           setNome('')
           setCnpj('')
+          setEmail('')
+          setContato('')
           setEndereco('')
           toast.success("Empresa registrada!")
         })
@@ -40,6 +47,13 @@ export default function Customers(){
 
   }
 
+  const handleChangeCNPJ = (e) => {
+    const rawValue = e.target.value.replace(/\D/g, '');
+    const formattedValue = formatCNPJ(e.target.value);
+    setCnpj(formattedValue);
+    setIsValid(rawValue.length < 14 || validateCNPJ(rawValue));
+  };
+  
   return(
     <div>
       <Header/>
@@ -62,9 +76,51 @@ export default function Customers(){
               <label>CNPJ</label>
               <input
                 type="text"
-                placeholder="Digite o CNPJ"
+                placeholder="00.000.000/0000-00"
                 value={cnpj}
-                onChange={(e) => setCnpj(e.target.value) }
+                onChange={handleChangeCNPJ}
+                maxLength={18}
+              />
+
+              <label>Email</label>
+              <input
+              type="email"
+              placeholder="exemplo@dominio.com"
+              value={email}
+              onChange={(e) => {
+                const value = e.target.value;
+                setEmail(value);
+              }}
+              onBlur={() => {
+                if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                  alert("Email inválido!");
+                }
+              }}
+            />
+
+              <label>Contato</label>
+              <input
+                type="text"
+                placeholder="(00) 00000-0000"
+                value={contato}
+                onChange={(e) => {
+                  const value = e.target.value.replace(/\D/g, ''); 
+                  let formattedValue = '';
+                  
+                  if (value.length <= 11) { 
+                    if (value.length <= 2) {
+                      formattedValue = value;
+                    } else if (value.length <= 6) {
+                      formattedValue = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                    } else if (value.length <= 10) {
+                      formattedValue = `(${value.slice(0, 2)}) ${value.slice(2, 6)}-${value.slice(6)}`;
+                    } else {
+                      formattedValue = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7, 11)}`;
+                    }
+                  }
+                  setContato(formattedValue);
+                }}
+                maxLength={15} 
               />
 
               <label>Endereço</label>

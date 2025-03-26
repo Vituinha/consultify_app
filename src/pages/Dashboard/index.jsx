@@ -60,7 +60,10 @@ export default function Dashboard(){
         lista.push({
           id: doc.id,
           assunto: doc.data().assunto,
-          valor: doc.data().valor,
+          valor: new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+          }).format(doc.data().valor),
           cliente: doc.data().cliente,
           clienteId: doc.data().clienteId,
           created: doc.data().created,
@@ -150,8 +153,8 @@ export default function Dashboard(){
                     <th scope="col">Assunto</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Cadastrando em</th>
-                    <th scope="col">#</th>
+                    <th scope="col">Cadastrado em</th>
+                    <th scope="col">Opções</th>
                   </tr>
                 </thead>
                 <tbody>
