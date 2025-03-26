@@ -3,6 +3,7 @@ import { useState, useEffect, useContext  } from 'react'
 import Header from '../../components/Header'
 import Title from '../../components/Title'
 import { FiPlusCircle} from 'react-icons/fi'
+import CurrencyInput from 'react-currency-input-field';
 
 import {AuthContext} from '../../contexts/auth'
 import { db } from '../../services/firebaseConnection'
@@ -27,9 +28,23 @@ export default function New(){
 
   const [complemento, setComplemento] = useState('')
   const [assunto, setAssunto] = useState('Consultoria')
-  const [valor, setValor] = useState(0)
+  const [valor, setValor] = useState('')
   const [status, setStatus] = useState('Aberto')
   const [idCustomer, setIdCustomer] = useState(false)
+
+  const formatarMoeda = (valor) => {
+    // Remove tudo que não é dígito
+    let valorNumerico = valor.replace(/\D/g, '');
+    
+    // Converte para número e divide por 100 para obter os centavos
+    valorNumerico = (Number(valorNumerico) / 100).toFixed(2);
+    
+    // Formata como moeda BRL (R$)
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(valorNumerico);
+  };
   
 
   useEffect(() => {
@@ -103,6 +118,13 @@ export default function New(){
 
   function handleChangeValue(e){
     setValor(e.target.value)
+    const valorDigitado = e.target.value;
+    if (valorDigitado) {
+      const valorFormatado = formatarMoeda(valorDigitado);
+      setValor(valorFormatado);
+    } else {
+      setValor('');
+    }
   }
 
   function hnadleChangeCustomer(e){
@@ -199,12 +221,16 @@ export default function New(){
             </select>
 
             <label>Valor</label>
-            <input
-                type="text"
-                name="valor"
-                value={valor}
-                onChange={handleChangeValue}
-              />
+            <CurrencyInput
+              name="valor"
+              value={valor}
+              onValueChange={(value) => setValor(value)}
+              intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
+              decimalSeparator=","
+              groupSeparator="."
+              prefix="R$ "
+              placeholder='R$0,00'
+            />
 
             <label>Status</label>
             <div className="status">
