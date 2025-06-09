@@ -3,7 +3,7 @@ import avatarImg from '../../assets/avatar.png'
 import { Link } from 'react-router-dom'
 
 import { AuthContext } from '../../contexts/auth'
-import { FiHome, FiUser, FiSettings } from 'react-icons/fi'
+import { FiHome, FiDollarSign, FiUser, FiSettings } from 'react-icons/fi'
 import './header.css';
 
 export default function Header(){
@@ -18,6 +18,11 @@ export default function Header(){
       <Link to="/dashboard">
         <FiHome color="#FFF" size={24} />
         Projetos
+      </Link>
+
+      <Link to="/payments">
+        <FiDollarSign color="#FFF" size={24} />
+        Pagamentos
       </Link>
 
       <Link to="/customers">
