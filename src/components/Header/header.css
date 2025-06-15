@@ -1,20 +1,11 @@
 .sidebar{
-  width: 200px;
+  width: 300px;
   margin: 0;
   padding: 0;
   background-color: #181c2e;
   position: fixed;
   height: 100%;
   overflow: auto;
-}
-
-.sidebar div{
-  background: url('../../assets/cover.png');
-  background-color: #181c2e;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 150px;
 }
 
 .sidebar div{
@@ -53,7 +44,7 @@
 }
 
 .content{
-  margin-left: 200px;
+  margin-left: 300px;
   padding: 1px 16px;
 }
 

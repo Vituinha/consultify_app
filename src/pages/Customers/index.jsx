@@ -10,6 +10,8 @@ import { addDoc, collection } from 'firebase/firestore'
 
 import { toast } from 'react-toastify'
 
+import './customers.css'
+
 export default function Customers(){
   const [nome, setNome] = useState('')
   const [cnpj, setCnpj] = useState('')
@@ -59,16 +61,15 @@ export default function Customers(){
       <Header/>
 
       <div className="content">
-        <Title name="Clientes">
-          <FiUser size={25} />
-        </Title>
+        <h1>Novo Cliente</h1>
+        <p className='subtitle'>Cadastre um novo cliente para seus projetos.</p>
 
         <div className="container">
           <form className="form-profile" onSubmit={handleRegister}>
-              <label>Nome fantasia</label>
+              <label>Nome</label>
               <input
                 type="text"
-                placeholder="Nome da empresa"
+                placeholder="Nome do Cliente ou Empresa"
                 value={nome}
                 onChange={(e) => setNome(e.target.value) }
               />
@@ -131,7 +132,7 @@ export default function Customers(){
                 onChange={(e) => setEndereco(e.target.value) }
               />
 
-              <button type="submit">
+              <button className='save' type="submit">
                 Salvar
               </button>
           </form>

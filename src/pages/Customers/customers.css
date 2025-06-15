@@ -1,0 +1,27 @@
+p{
+    padding-bottom: 30px;
+}
+
+.container{
+    width: 700px;
+    border: 1px solid #88888888;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding-bottom: 30px;
+    flex-direction: column;
+}
+
+input{
+    background-color: #F7FAFC;
+}
+
+.form-profile{
+    display: inline-flex;
+}
+
+.save{
+    width: 100px;
+    margin-top: 15px;
+    margin-right: 5px;
+    margin-left: auto;
+}

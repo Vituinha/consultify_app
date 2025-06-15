@@ -195,7 +195,7 @@ export default function Payments() {
           <FiDollarSign size={25} />
         </Title>
         
-        <div className="container">
+        <div className="containerPay">
           <div className="form-section">
             <h2>{editId ? 'Editar Pagamento' : 'Novo Pagamento'}</h2>
             

@@ -3,7 +3,7 @@ import {AuthContext} from '../../contexts/auth'
 
 import Header from '../../components/Header'
 import Title from '../../components/Title'
-import { FiPlus, FiMessageSquare, FiSearch, FiEdit2 } from 'react-icons/fi'
+import { FiPlus, FiSearch, FiEdit2 } from 'react-icons/fi'
 
 import { Link } from 'react-router-dom'
 import { collection, getDocs, orderBy, limit, startAfter, query} from 'firebase/firestore'
@@ -73,7 +73,7 @@ export default function Dashboard(){
         })
       })
 
-      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] // Pegando o ultimo item
 
       setProjetos(projetos => [...projetos, ...lista])
       setLastDocs(lastDoc);
@@ -110,7 +110,6 @@ export default function Dashboard(){
 
         <div className="content">
           <Title name="Consultify">
-            <FiMessageSquare size={25} />
           </Title>
 
           <div className="container dashboard">
@@ -126,51 +125,53 @@ export default function Dashboard(){
       <Header/>
 
       <div className="content">
-        <Title name="Consultify">
-          <FiMessageSquare size={25} />
-        </Title>
+        <h1>Projetos</h1>
+        <p className='subtitle'>Gerencie todos os seus projetos em um só lugar.</p>
 
         <>
           {projetos.length === 0 ? (
             <div className="container dashboard">
               <span>Nenhum projeto encontrado...</span>
-              <Link to="/new" className="new">
+              <Link to="/new" className="new" style={{ backgroundColor: '#181c2e', borderRadius: '8px', padding: '15px' }}>
                 <FiPlus color="#FFF" size={25} />
                 Novo Projeto
               </Link>  
             </div>
           ) : (
-            <>
-              <Link to="/new" className="new">
-                <FiPlus color="#FFF" size={25} />
+            <div className='mainTable'>
+              <Link to="/new" className="new" style={{ backgroundColor: '#181c2e', borderRadius: '8px', padding: '15px' }}>
+                <FiPlus color="#FFF" size={18} />
                 Novo Projeto
               </Link>  
 
-              <table>
+              <table className="mainTable">
                 <thead>
                   <tr>
-                    <th scope="col">Cliente</th>
+                    <th scope="col" style={{ borderLeft: '1px solid #686868' }}>Cliente</th>
                     <th scope="col">Assunto</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Status</th>
                     <th scope="col">Cadastrado em</th>
-                    <th scope="col">Opções</th>
+                    <th scope="col" style={{ borderRight: '1px solid #686868' }}>Ações</th>
                   </tr>
                 </thead>
                 <tbody>
                   {projetos.map((item, index) => {
                     return(
                       <tr key={index}>
-                        <td data-label="Cliente">{item.cliente}</td>
+                        <td data-label="Cliente" style={{ borderLeft: '1px solid #686868' }}>{item.cliente}</td>
                         <td data-label="Assunto">{item.assunto}</td>
                         <td data-label="Valor">{item.valor}</td>
                         <td data-label="Status">
-                          <span className="badge" style={{ backgroundColor: item.status === 'Aberto' ? '#5cb85c' : '#999' }}>
+                          <span className="badge" style={{ backgroundColor: item.status === 'Aberto' ? '#d6f5bd' : '#f1d5ab', fontSize: '14px', fontWeight: 'bolder',
+                             padding: '8px', borderRadius: '20px',
+                             border: item.status === 'Aberto' ? '2px solid rgb(115, 255, 0)' : '2px solid rgb(246, 169, 53)',
+                             color: item.status === 'Aberto' ? '#0ab613' : '#c57804' }}>
                             {item.status}
                           </span>
                         </td>
                         <td data-label="Cadastrado">{item.createdFormat}</td>
-                        <td data-label="#">
+                        <td data-label="#" style={{ borderRight: '1px solid #686868' }}>
                           <button className="action" style={{ backgroundColor: '#3583f6' }} onClick={ () => toggleModal(item)}>
                             <FiSearch color='#FFF' size={17}/>
                           </button>
@@ -187,7 +188,7 @@ export default function Dashboard(){
 
               {loadingMore && <h3>Buscando mais projetos...</h3>}    
               {!loadingMore && !isEmpty && <button className="btn-more" onClick={handleMore}>Buscar mais</button>  }  
-            </>
+            </div>
           )}
         </>
 
