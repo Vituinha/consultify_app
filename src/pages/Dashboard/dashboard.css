@@ -1,8 +1,7 @@
-
 .new{
   float: right;
   margin-bottom: 1.5em;
-  background-color: #83bf02;
+  background-color: #1962c2;
   padding: 0.5em;
   border-radius: 5px;
   display: flex;
@@ -10,8 +9,22 @@
   align-items: center;
   border:0;
   font-weight: 600;
-  color: #FFF;
+  color: #ffffff;
   transition: ease-in-out 0.3s;
+}
+
+.content{
+  padding: 50px;
+  width: 85%;
+}
+
+h1{
+  font-size: 50px;
+}
+
+.subtitle{
+  font-size: 20px;
+  padding-top: 8px;
 }
 
 .new svg{
@@ -19,7 +32,7 @@
 }
 
 .new:hover{
-  background-color: #5fd204;
+  background-color: #c57804;
   transform: scale(1.1);
 }
 
@@ -35,8 +48,13 @@ table{
   margin: 0;
   padding: 0;
   width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
+}
+
+.mainTable{
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 table caption{
@@ -45,14 +63,16 @@ table caption{
 }
 
 table tr{
-  background-color: #F8f8f8;
-  border:1px solid #DDD;
+  background-color: #ffffff;
+  border:1px solid #ffffff;
   padding: 0.35em;
 }
 
 table th, table td{
   padding: 0.60em;
-  text-align: center;
+  background-color: #ffffff;
+  border-top: 1px solid #686868;
+  border-bottom: 1px solid #686868;
 }
 
 table th{
