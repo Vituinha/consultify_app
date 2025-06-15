@@ -73,7 +73,7 @@ export default function Dashboard(){
         })
       })
 
-      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] // Pegando o ultimo item
+      const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1]
 
       setProjetos(projetos => [...projetos, ...lista])
       setLastDocs(lastDoc);

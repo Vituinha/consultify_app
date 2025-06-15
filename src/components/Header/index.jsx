@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth'
 import { FiHome, FiUser, FiSettings } from 'react-icons/fi'
 import './header.css';
+import { FaMoneyBill } from 'react-icons/fa'
 
 export default function Header(){
   const { user } = useContext(AuthContext);
@@ -23,6 +24,11 @@ export default function Header(){
       <Link to="/customers">
         <FiUser color="#FFF" size={24} />
         Clientes
+      </Link>
+
+      <Link to="/payments">
+        <FaMoneyBill color="#FFF" size={24} />
+        Pagamentos
       </Link>
 
       <Link to="/profile">
