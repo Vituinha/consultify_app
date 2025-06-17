@@ -13,8 +13,8 @@
 }
 
 .sidebar div img {
-  width: 90px;
-  height: 90px;
+  width: 75px;
+  height: 75px;
   display: block;
   margin: auto;
   border-radius: 50%;
@@ -46,6 +46,33 @@
 .content{
   margin-left: 300px;
   padding: 1px 16px;
+}
+
+.bar{
+  border-top: 1px solid rgb(255, 255, 255);
+  width: 92%;
+  margin-top: 30px;
+  margin-left: 10px;
+}
+
+.logout-btn{
+  padding: 4px 20px;
+  border: 1px solid #ffffff;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 1.3em;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  margin-top: 460px;
+  width: 75%;
+  margin-left: 35px;
+  overflow: auto;
+}
+
+.itens{
+  margin-top: -40px;
+  margin-left: 5px;
 }
 
 @media screen and (max-width: 700px){

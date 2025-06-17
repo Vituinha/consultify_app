@@ -12,11 +12,18 @@ form input[type="radio"]:not(:first-child){
   margin-left: 15px;
 }
 
-.status span{
+.projectStatus span{
   padding-left: 0.5em;
   font-size: 1.3em;
 }
 
-.status{
+.projectStatus{
   margin-bottom: 1em;
+}
+
+.statusInput{
+  border-radius: 100%;
+  background: #e8e8e8;
+  border: 3px solid #FFF;
+  outline: 1px solid #a52a2a;
 }

@@ -189,9 +189,8 @@ export default function New(){
       <Header/>
 
       <div className="content">
-        <Title name={id ? "Editando Projeto" : "Novo Projeto"}>
-          <FiPlusCircle size={25}/>
-        </Title>
+        <h1>Novo Projeto</h1>
+        <p className='subtitle'>Crie seu novo projeto.</p>
 
         <div className="container">
           <form className="form-profile" onSubmit={handleRegister}>
@@ -233,7 +232,7 @@ export default function New(){
             />
 
             <label>Status</label>
-            <div className="status">
+            <div className="projectStatus">
               <input
                 type="radio"
                 name="radio"
