@@ -113,23 +113,22 @@ export default function Profile(){
       <Header/>
 
       <div className="content">
-        <Title name="Minha conta">
-          <FiSettings size={25} />
-        </Title>
+        <h1>Meu Perfil</h1>
+        <p className='subtitle'>Gerencie suas informações pessoais e preferências de conta.</p>
 
-       <div className="container">
+       <div className="container" style={{ width: '500px' }}>
 
         <form className="form-profile" onSubmit={handleSubmit}>
           <label className="label-avatar">
             <span>
-              <FiUpload color="#FFF" size={25} />
+              <FiUpload color="#FFF" size={20} />
             </span>
 
             <input type="file" accept="image/*" onChange={handleFile}  /> <br/>
             {avatarUrl === null ? (
-              <img src={avatar} alt="Foto de perfil" width={250} height={250} />
+              <img src={avatar} alt="Foto de perfil" width={120} height={120} />
             ) : (
-              <img src={avatarUrl} alt="Foto de perfil" width={250} height={250} />
+              <img src={avatarUrl} alt="Foto de perfil" width={120} height={120} />
             )}
 
           </label>
@@ -140,15 +139,10 @@ export default function Profile(){
           <label>Email</label>
           <input type="text" value={email} disabled={true} />
           
-          <button type="submit">Salvar</button>
+          <button type="submit" style={{ marginTop: '20px' }}>Salvar</button>
         </form>
 
        </div>
-
-       <div className="container">
-         <button className="logout-btn" onClick={ () => logout() }>Sair</button>
-       </div>
-
       </div>
 
     </div>

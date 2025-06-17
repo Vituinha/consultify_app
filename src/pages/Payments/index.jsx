@@ -191,9 +191,8 @@ export default function Payments() {
       <Header />
       
       <div className="content">
-        <Title name="Pagamentos">
-          <FiDollarSign size={25} />
-        </Title>
+        <h1>Pagamentos</h1>
+        <p className='subtitle'> Salve todos os seus pagamentos de maneira simples.</p>
         
         <div className="containerPay">
           <div className="form-section">

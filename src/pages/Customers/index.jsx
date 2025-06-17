@@ -129,10 +129,11 @@ export default function Customers(){
                 type="text"
                 placeholder="Endereço da empresa"
                 value={endereco}
+                style={{ marginBottom: '30px' }}
                 onChange={(e) => setEndereco(e.target.value) }
               />
 
-              <button className='save' type="submit">
+              <button type="submit">
                 Salvar
               </button>
           </form>
